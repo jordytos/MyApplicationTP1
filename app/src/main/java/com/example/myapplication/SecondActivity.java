@@ -6,12 +6,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class SecondActivity extends AppCompatActivity {
     TextView tv;
+    String  s;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,9 @@ public class SecondActivity extends AppCompatActivity {
 
         tv = (TextView) findViewById(R.id.textView1);
 
-
+        // Methode 2 : avec la valeur  stockée du Intent qu'on recupère de l'Activity1
+        Intent intent = getIntent();
+        if (intent != null)   s=intent.getStringExtra("cle") ;
         popUp("onCreate() activity2");
 
     }
@@ -59,7 +61,12 @@ public class SecondActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         SharedPreferences settings = getSharedPreferences("cycle_vie_prefs", Context.MODE_PRIVATE);
-        tv.setText("Bienvenue dans l'activité 2 "+settings.getString("valeur", " "));
+
+        /*
+            tv.setText("Bienvenue dans l'activité 2 "+settings.getString("valeur", " "));     // Methode 1 : SharedPrerferences
+         */
+
+        tv.setText("Bienvenue dans l'activité 2 "+s);   //Methoe 2 : getIntent()
         popUp("onResume() activity2");
     }
     /** =============================================================
