@@ -12,17 +12,20 @@ import android.widget.Toast;
 public class SecondActivity extends AppCompatActivity {
     TextView tv;
     String  s;
+    String valeur;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
+
         tv = (TextView) findViewById(R.id.textView1);
 
         // Methode 2 : avec la valeur  stockée du Intent qu'on recupère de l'Activity1
         Intent intent = getIntent();
         if (intent != null)   s=intent.getStringExtra("cle") ;
+
         popUp("onCreate() activity2");
 
     }
@@ -63,10 +66,15 @@ public class SecondActivity extends AppCompatActivity {
         SharedPreferences settings = getSharedPreferences("cycle_vie_prefs", Context.MODE_PRIVATE);
 
         /*
-            tv.setText("Bienvenue dans l'activité 2 "+settings.getString("valeur", " "));     // Methode 1 : SharedPrerferences
+        tv.setText("Bienvenue dans l'activité 2 "+settings.getString("valeur", " "));     // Methode 1 : SharedPrerferences
          */
 
+        /*
         tv.setText("Bienvenue dans l'activité 2 "+s);   //Methoe 2 : getIntent()
+        */
+
+        tv.setText("Bienvenue dans l'activité 2 "+valeur);   //Methoe 3.1 & 3.2 : getIntent()
+
         popUp("onResume() activity2");
     }
     /** =============================================================
@@ -85,13 +93,13 @@ public class SecondActivity extends AppCompatActivity {
         /*SharedPreferences settings = getSharedPreferences("cycle_vie_prefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
         editor.putString("valeur", getTxtValeur());
-        editor.commit();
+        editor.commit();*/
 
         if (isFinishing()) {
-            popUp("onPause, l'utilisateur à demandé la fermeture via un finish()");
+            popUp("onPause activity2, l'utilisateur à demandé la fermeture via un finish()");
         } else {
-            popUp("onPause, l'utilisateur n'a pas demandé la fermeture via un finish()");
-        }*/
+            popUp("onPause activity2, l'utilisateur n'a pas demandé la fermeture via un finish()");
+        }
     }
     /** ==============================================================
      * La fonction onStop() est exécutée :
@@ -124,4 +132,6 @@ public class SecondActivity extends AppCompatActivity {
     public void popUp(String message) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
+
+
 }

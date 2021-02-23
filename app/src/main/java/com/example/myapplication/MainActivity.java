@@ -13,8 +13,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
 {
-
-
+    String valeur;
 
     /**
      * Exécuté chaque fois que l'utilisateur clique sur l'icône de l'application pour une première fois.
@@ -35,10 +34,12 @@ public class MainActivity extends AppCompatActivity
         Button btnAct2 = (Button) findViewById(R.id.btnAct2);
         btnAct2.setOnClickListener(btnAct2OnClickListener);
 
+        //Methode 3.1 : sauvergade avec le bundle saveInstanceState en parametre de onCreate()
+        if (savedInstanceState != null){
+            valeur = savedInstanceState.getString("cle2");
+        }
+
         popUp("onCreate()");
-
-
-
 
     }
 
@@ -53,10 +54,11 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(v.getContext(), SecondActivity.class);
-            intent.putExtra("cle",getTxtValeur().toString());   //
+            intent.putExtra("cle",getTxtValeur().toString());
             startActivity(intent);
         }
     };
+
 
 
     public String getTxtValeur() {
@@ -103,7 +105,7 @@ public class MainActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         SharedPreferences settings = getSharedPreferences("cycle_vie_prefs", Context.MODE_PRIVATE);
-        setTxTValeur(settings.getString("valeur", ""));
+        /*setTxTValeur(settings.getString("valeur", ""));*/
         popUp("onResume()");
     }
     /** =============================================================
@@ -120,9 +122,9 @@ public class MainActivity extends AppCompatActivity
         super.onPause();
 
         SharedPreferences settings = getSharedPreferences("cycle_vie_prefs", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
+        /*SharedPreferences.Editor editor = settings.edit();
         editor.putString("valeur", getTxtValeur());
-        editor.commit();
+        editor.commit();*/
 
         if (isFinishing()) {
             popUp("onPause, l'utilisateur à demandé la fermeture via un finish()");
@@ -166,4 +168,15 @@ public class MainActivity extends AppCompatActivity
     public void popUp(String message) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
+
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putString("cle2", getTxtValeur().toString());
+    }
+
+    /*public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        valeur = savedInstanceState.getString("cle2");
+
+    }*/
 }
