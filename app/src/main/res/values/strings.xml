@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="quitter">Quitter</string>
+    <string name="envoyer">Envoyer</string>
+    <string name="btn2">activite2</string>
+
+
+</resources>
