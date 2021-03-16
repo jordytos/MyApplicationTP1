@@ -177,6 +177,5 @@ public class MainActivity extends AppCompatActivity
     /*public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         valeur = savedInstanceState.getString("cle2");
-
     }*/
 }

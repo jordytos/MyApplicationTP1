@@ -69,12 +69,12 @@ public class SecondActivity extends AppCompatActivity {
         tv.setText("Bienvenue dans l'activité 2 "+settings.getString("valeur", " "));     // Methode 1 : SharedPrerferences
          */
 
-        /*
+
         tv.setText("Bienvenue dans l'activité 2 "+s);   //Methoe 2 : getIntent()
+
+
+        /*tv.setText("Bienvenue dans l'activité 2 "+valeur);   //Methoe 3.1 & 3.2 : getIntent()
         */
-
-        tv.setText("Bienvenue dans l'activité 2 "+valeur);   //Methoe 3.1 & 3.2 : getIntent()
-
         popUp("onResume() activity2");
     }
     /** =============================================================
