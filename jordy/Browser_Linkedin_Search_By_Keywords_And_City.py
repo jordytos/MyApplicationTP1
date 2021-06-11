@@ -1326,7 +1326,7 @@ p_limit = max_number_profils_toScrap
 
 p_browser = "Firefox"
 p_id_social_account = "Julie Picasset"
-p_limit = 1
+p_limit = 2
 p_taskuser_id = "276"
 p_driver = ""
 label_log = ""
